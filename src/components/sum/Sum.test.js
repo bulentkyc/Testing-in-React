@@ -3,6 +3,7 @@
 //Scenario 3: 2 numbers
 //Scenario 4: More numbers
 
+import { screen } from "@testing-library/react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils"
 
@@ -27,7 +28,8 @@ it('renders sum of 2 numbers', () => {
         render(<Sum a = {2} b = {3}/>, container);
     });
     //HEADS-UP: 15 also contains 5 and would be success
-    expect(container.textContent).toMatch(`5`);
+    //expect(container.textContent).toMatch(`5`);
+    expect(screen.getByTestId('calc').textContent).toEqual('5');
 });
 
 it('renders a message if there are no 2 numbers', () => {
