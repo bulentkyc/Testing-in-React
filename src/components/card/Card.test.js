@@ -59,6 +59,7 @@ it('should cleanup on being removed', () => {
     expect(onSelect).not.toHaveBeenCalled();
 });
 
+
 it('should call onSelect with the choise', () => {
     const onSelect = jest.fn();
     
