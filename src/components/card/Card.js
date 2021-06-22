@@ -17,7 +17,7 @@ export default (props) => {
     const content = options.map( option => 
         <button 
             key = {option} 
-            data-testid = {options}
+            data-testid = {option}
             onClick = {() => props.onSelect(option)}
         > 
             {option}

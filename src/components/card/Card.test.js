@@ -36,3 +36,40 @@ it ('should call onSelect with the timout msg.', () => {
     });
     expect(onSelect).toHaveBeenCalledWith('Time is over!');
 });
+
+it('should cleanup on being removed', () => {
+    const onSelect = jest.fn();
+
+    act(() => {
+        render(<Card onSelect = {onSelect}/>, container);
+    });
+
+    act(() => {
+        jest.advanceTimersByTime(1000);
+    });
+    expect(onSelect).not.toHaveBeenCalled();
+
+    act(() => {
+        render(null, container);
+    });
+
+    act(() => {
+        jest.advanceTimersByTime(5000);
+    });
+    expect(onSelect).not.toHaveBeenCalled();
+});
+
+it('should call onSelect with the choise', () => {
+    const onSelect = jest.fn();
+    
+    act(() => {
+        render(<Card onSelect = {onSelect}/>, container);
+    });
+    
+    const angularBtn = container.querySelector('[data-testid="Angular"]');
+
+    act(() => {
+        angularBtn.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+    });
+    expect(onSelect).toHaveBeenCalledWith('Angular');
+});
